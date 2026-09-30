@@ -1,9 +1,8 @@
-name: Upload to npm
+name: Unpkg upload
 on:
   workflow_dispatch: 
   push:
     branches: [ main ]
-    
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -12,7 +11,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          registry-url: 'https://npmjs.com'
-      - run: npm publish
+          registry-url: 'https://registry.npmjs.com'
+      - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
